@@ -17,9 +17,25 @@ WRPermission is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'WRPermission'
+pod 'WRPermission/Photos'
 ```
+申请哪个权限，引用哪个关键字。目前有
 
+```swift
+Bluetooth       //蓝牙
+Camera          //相机
+Contacts        //通讯录
+Events          //日历
+Location        //位置
+MediaLibrary    //媒体库
+Microphone      //麦克风
+Motion          //移动数据
+Notifications   //通知
+Photos          //相册
+Reminders       //记事本
+Siri            
+Speech          //语音录制
+```
 ## Author
 
 Godfighter, xianghui_ios@163.com
