@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WRPermission'
-  s.version          = '0.9.6'
-  s.summary          = '常用权限申请.'
+  s.version          = '1.0.0'
+  s.summary          = 'Permission,常用权限申请.'
   s.description      = '常用权限的状态查询和申请'
   s.homepage         = 'https://github.com/Godfighter/WRPermission'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
