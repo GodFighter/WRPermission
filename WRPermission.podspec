@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WRPermission'
-  s.version          = '0.9.4'
+  s.version          = '0.9.5'
   s.summary          = '常用权限申请.'
   s.description      = '常用权限的状态查询和申请'
   s.homepage         = 'https://github.com/Godfighter/WRPermission'
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'Bluetooth' do |bluetooth|
     bluetooth.dependency 'WRPermission/Base'
-    bluetooth.source_files = 'WRPermission/Classes/Types/WRPermissionBluetooth.swift'
+    bluetooth.source_files = 'WRPermission/Classes/Types/WRBluetooth.swift'
     bluetooth.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_BLUETOOTH' }
   end
   
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Events' do |events|
     events.dependency 'WRPermission/Base'
-    events.source_files = 'WRPermission/Classes/Types/WRContacts.swift'
+    events.source_files = 'WRPermission/Classes/Types/WREvents.swift'
     events.pod_target_xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS'  => 'PERMISSION_EVENTS' }
   end
   
