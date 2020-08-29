@@ -85,7 +85,7 @@ public class WRBluetooth: WRPermission {
     }
 }
 
-extension WRPermissionBluetooth: CBPeripheralManagerDelegate {
+extension WRBluetooth: CBPeripheralManagerDelegate {
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         stateBluetoothManagerDetermined = true
         statusBluetooth = status
@@ -99,7 +99,7 @@ extension WRPermissionBluetooth: CBPeripheralManagerDelegate {
 }
 
 extension CBPeripheralManager {
-    func request(_ permission: WRPermissionBluetooth) {
+    func request(_ permission: WRBluetooth) {
         guard case .poweredOn = state else { return }
 
         startAdvertising(nil)

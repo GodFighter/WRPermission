@@ -1,5 +1,5 @@
 //
-//  WRPermissionReminders.swift
+//  WRReminders.swift
 //  Pods
 //
 //  Created by xianghui-iMac on 2020/8/29.
