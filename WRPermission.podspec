@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WRPermission'
-  s.version          = '0.9.3'
+  s.version          = '0.9.4'
   s.summary          = '常用权限申请.'
   s.description      = '常用权限的状态查询和申请'
   s.homepage         = 'https://github.com/Godfighter/WRPermission'

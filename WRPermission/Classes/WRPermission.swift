@@ -97,14 +97,14 @@ open class WRPermission: NSObject {
     @available(iOS 10.0, *)
     public static let Notifications: WRNotifications = {
         let options: UNAuthorizationOptions = [.badge, .sound, .alert]
-        return WRPermissionNotifications(type: .notifications(options))
+        return WRNotifications(type: .notifications(options))
     }()
     
     private static var _Notifications: WRNotifications?
     /** 通知权限方法 */
     @available(iOS 10.0, *)
     public static func Notifications(options: UNAuthorizationOptions) -> WRNotifications {
-        let permission = WRPermissionNotifications(type: .notifications(options))
+        let permission = WRNotifications(type: .notifications(options))
         _Notifications = permission
         return permission
     }
