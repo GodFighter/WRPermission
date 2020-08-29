@@ -2,10 +2,4 @@ use_frameworks!
 
 target 'WRPermission_Example' do
   pod 'WRPermission', :path => '../'
-
-  target 'WRPermission_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end
