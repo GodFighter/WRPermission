@@ -8,12 +8,6 @@
 import UIKit
 
 
-//public protocol WRPermissionProtocol {
-//    typealias Callback = (WRPermissionStatus) -> Void
-//    var status1: WRPermissionStatus { get }
-//    func request(_ callback: @escaping Callback)
-//}
-
 // MARK:- WRPermissionStatus
 /**权限状态*/
 public enum WRPermissionStatus: String {
@@ -52,22 +46,22 @@ open class WRPermission: NSObject {
 
     #if PERMISSION_BLUETOOTH
     /**蓝牙权限实例*/
-    public static let Bluetooth = WRPermissionBluetooth(type: .bluetooth)
+    public static let Bluetooth = WRBluetooth(type: .bluetooth)
     #endif
 
     #if PERMISSION_CAMERA
     /**相机权限实例*/
-    public static let Camera = WRPermissionCamera(type: .camera)
+    public static let Camera = WRCamera(type: .camera)
     #endif
 
     #if PERMISSION_CONTACTS && canImport(Contacts)
     /** 通讯录权限实例 */
-    public static let Contacts = WRPermissionContacts(type: .contacts)
+    public static let Contacts = WRContacts(type: .contacts)
     #endif
 
     #if PERMISSION_EVENTS
     /** 日历权限实例 */
-    public static let Events = WRPermissionEvents(type: .events)
+    public static let Events = WREvents(type: .events)
     #endif
 
     #if PERMISSION_LOCATION
@@ -75,41 +69,41 @@ open class WRPermission: NSObject {
     /**
      始终
     */
-    public static let LocationAlways = WRPermissionLocationAlways(type: .locationAlways)
+    public static let LocationAlways = WRLocationAlways(type: .locationAlways)
     /**
      使用时
     */
-    public static let LocationWhenInUse = WRPermissionLocationWhenInUse(type: .locationWhenInUse)
+    public static let LocationWhenInUse = WRLocationWhenInUse(type: .locationWhenInUse)
     #endif
 
     #if PERMISSION_MEDIA_LIBRARY
     /** 媒体库权限实例 */
     @available(iOS 9.3, *)
-    public static let MediaLibrary = WRPermissionMediaLibrary(type: .mediaLibrary)
+    public static let MediaLibrary = WRMediaLibrary(type: .mediaLibrary)
     #endif
 
     #if PERMISSION_MICROPHONE
     /**麦克风权限实例*/
-    public static let Microphone = WRPermissionMicrophone(type: .microphone)
+    public static let Microphone = WRMicrophone(type: .microphone)
     #endif
     
     #if PERMISSION_MOTION
     /**移动数据权限*/
-    public static let Motion = WRPermissionMotion(type: .motion)
+    public static let Motion = WRMotion(type: .motion)
     #endif
 
     #if PERMISSION_NOTIFICATIONS
     /** 通知权限实例 */
     @available(iOS 10.0, *)
-    public static let Notifications: WRPermissionNotifications = {
+    public static let Notifications: WRNotifications = {
         let options: UNAuthorizationOptions = [.badge, .sound, .alert]
         return WRPermissionNotifications(type: .notifications(options))
     }()
     
-    private static var _Notifications: WRPermissionNotifications?
+    private static var _Notifications: WRNotifications?
     /** 通知权限方法 */
     @available(iOS 10.0, *)
-    public static func Notifications(options: UNAuthorizationOptions) -> WRPermissionNotifications {
+    public static func Notifications(options: UNAuthorizationOptions) -> WRNotifications {
         let permission = WRPermissionNotifications(type: .notifications(options))
         _Notifications = permission
         return permission
@@ -118,21 +112,21 @@ open class WRPermission: NSObject {
 
     #if PERMISSION_PHOTOS
     /**图片权限实例*/
-    public static let Photos = WRPermissionPhoto(type: .photos)
+    public static let Photos = WRPhoto(type: .photos)
     #endif
     
     #if PERMISSION_REMINDERS
     /**记事本权限实例*/
-    public static let Reminders = WRPermissionReminders(type: .reminders)
+    public static let Reminders = WRReminders(type: .reminders)
     #endif
 
     #if PERMISSION_SIRI && canImport(Intents)
-    public static let Siri = WRPermissionSiri(type: .siri)
+    public static let Siri = WRSiri(type: .siri)
     #endif
 
     #if PERMISSION_SPEECH_RECOGNIZER && canImport(Speech)
     /** 语音录制权限实例 */
-    public static let SpeechRecognizer = WRPermissionSpeech(type: .speechRecognizer)
+    public static let SpeechRecognizer = WRSpeech(type: .speechRecognizer)
     #endif
 
     

@@ -11,7 +11,7 @@ import CoreMotion
 private let MotionManager = CMMotionActivityManager()
 
 /** 移动数据权限 */
-public class WRPermissionMotion: WRPermission {
+public class WRMotion: WRPermission {
     override init(type: WRPermissionType) {
         super.init(type: type)
     }

@@ -45,7 +45,7 @@ extension CLLocationManager {
 
 // MARK: - LocationWhenInUse
 /** 位置权限实例 使用时 */
-public class WRPermissionLocationWhenInUse: WRPermission {
+public class WRLocationWhenInUse: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)
@@ -79,7 +79,7 @@ public class WRPermissionLocationWhenInUse: WRPermission {
 
 // MARK: - LocationAlways
 /** 位置权限实例 始终 */
-public class WRPermissionLocationAlways: WRPermission {
+public class WRLocationAlways: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)

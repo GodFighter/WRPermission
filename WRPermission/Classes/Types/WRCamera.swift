@@ -1,28 +1,27 @@
 //
-//  WRPermissionSpeech.swift
+//  WRPermissionCamera.swift
 //  Pods
 //
 //  Created by 项辉 on 2020/8/28.
 //
 
-#if PERMISSION_SPEECH_RECOGNIZER && canImport(Speech)
-import Speech
+#if PERMISSION_CAMERA
 
-/** 语音录制权限 */
-public class WRPermissionSpeech: WRPermission {
+import AVFoundation
+
+/** 相机权限 */
+public class WRCamera: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)
     }
 
     public override var infoKey: String {
-        return "NSSpeechRecognitionUsageDescription"
+        return "NSCameraUsageDescription"
     }
 
     public override var status: WRPermissionStatus {
-        guard #available(iOS 10.0, *) else { fatalError() }
-
-        let status = SFSpeechRecognizer.authorizationStatus()
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
 
         switch status {
         case .authorized:          return .authorized
@@ -33,22 +32,16 @@ public class WRPermissionSpeech: WRPermission {
     }
     
     public override func request(_ callback: @escaping Callback) {
-        guard #available(iOS 10.0, *) else { fatalError() }
-
-        guard let _ = Bundle.main.object(forInfoDictionaryKey: "NSMicrophoneUsageDescription") else {
-            debugPrint("WARNING: \("NSMicrophoneUsageDescription") not found in Info.plist")
-            return
-        }
-
         guard let _ = Bundle.main.object(forInfoDictionaryKey: infoKey) else {
             debugPrint("WARNING: \(infoKey) not found in Info.plist")
             return
         }
-        
-        SFSpeechRecognizer.requestAuthorization { _ in
+
+        AVCaptureDevice.requestAccess(for: .video) { _ in
             callback(self.status)
         }
     }
+
 }
 
 #endif

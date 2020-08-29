@@ -1,28 +1,27 @@
 //
-//  WRPermissionMediaLibrary.swift
+//  WRPermissionSiri.swift
 //  Pods
 //
-//  Created by 项辉 on 2020/8/28.
+//  Created by xianghui-iMac on 2020/8/29.
 //
 
-#if PERMISSION_MEDIA_LIBRARY
-import MediaPlayer
+#if PERMISSION_SIRI && canImport(Intents)
+import Intents
 
-/** 媒体库权限 iOS 9.3 */
-public class WRPermissionMediaLibrary: WRPermission {
+public class WRSiri: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)
     }
 
     public override var infoKey: String {
-        return "NSAppleMusicUsageDescription"
+        return "NSSiriUsageDescription"
     }
 
     public override var status: WRPermissionStatus {
-        guard #available(iOS 9.3, *) else { fatalError() }
+        guard #available(iOS 10.0, *) else { fatalError() }
 
-        let status = MPMediaLibrary.authorizationStatus()
+        let status = INPreferences.siriAuthorizationStatus()
 
         switch status {
         case .authorized:          return .authorized
@@ -33,14 +32,17 @@ public class WRPermissionMediaLibrary: WRPermission {
     }
     
     public override func request(_ callback: @escaping Callback) {
-        guard #available(iOS 9.3, *) else { fatalError() }
+        guard #available(iOS 10.0, *) else { fatalError() }
+//        #if targetEnvironment(simulator)
+//        return
+//        #endif
 
         guard let _ = Bundle.main.object(forInfoDictionaryKey: infoKey) else {
-            debugPrint("WARNING: \(infoKey) not found in Info.plist")
+            print("WARNING: \(infoKey) not found in Info.plist")
             return
         }
 
-        MPMediaLibrary.requestAuthorization { _ in
+        INPreferences.requestSiriAuthorization { _ in
             callback(self.status)
         }
     }

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WRPermission'
-  s.version          = '0.9.0'
+  s.version          = '0.9.1'
   s.summary          = '常用权限申请.'
   s.description      = '常用权限的状态查询和申请'
   s.homepage         = 'https://github.com/Godfighter/WRPermission'
@@ -21,7 +21,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
 
   s.default_subspec = 'Source'
-  s.source_files = 'WRPermission/Classes/*.swift'
+  s.subspec 'Source' do |source|
+    source.source_files = 'WRPermission/Classes/*.swift'
+  end
   
   s.subspec 'Bluetooth' do |bluetooth|
     bluetooth.dependency 'WRPermission/Source'

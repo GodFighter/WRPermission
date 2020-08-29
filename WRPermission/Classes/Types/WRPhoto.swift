@@ -11,7 +11,7 @@ import Photos
 import Foundation
 
 /** 相册权限 */
-public class WRPermissionPhoto: WRPermission {
+public class WRPhoto: WRPermission {
     
     override init(type: WRPermissionType) {
         super.init(type: type)

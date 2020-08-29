@@ -9,7 +9,7 @@
 import AVFoundation
 
 /** 麦克风权限 */
-public class WRPermissionMicrophone: WRPermission {
+public class WRMicrophone: WRPermission {
     override init(type: WRPermissionType) {
         super.init(type: type)
     }

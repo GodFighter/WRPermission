@@ -9,7 +9,7 @@
 import UserNotifications
 
 /** 通知权限 iOS10+ */
-public class WRPermissionNotifications: WRPermission {
+public class WRNotifications: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)

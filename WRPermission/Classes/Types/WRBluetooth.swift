@@ -14,7 +14,7 @@ let WRBluetoothManager = CBPeripheralManager(
     options: [CBPeripheralManagerOptionShowPowerAlertKey: false]
 )
 
-public class WRPermissionBluetooth: WRPermission {
+public class WRBluetooth: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)

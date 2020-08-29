@@ -1,27 +1,26 @@
 //
-//  WRPermissionCamera.swift
+//  WRPermissionReminders.swift
 //  Pods
 //
-//  Created by 项辉 on 2020/8/28.
+//  Created by xianghui-iMac on 2020/8/29.
 //
 
-#if PERMISSION_CAMERA
+#if PERMISSION_REMINDERS
+import EventKit
 
-import AVFoundation
-
-/** 相机权限 */
-public class WRPermissionCamera: WRPermission {
+/** 记事本权限 */
+public class WRReminders: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)
     }
 
     public override var infoKey: String {
-        return "NSCameraUsageDescription"
+        return "NSRemindersUsageDescription"
     }
 
     public override var status: WRPermissionStatus {
-        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        let status = EKEventStore.authorizationStatus(for: .reminder)
 
         switch status {
         case .authorized:          return .authorized
@@ -36,12 +35,10 @@ public class WRPermissionCamera: WRPermission {
             debugPrint("WARNING: \(infoKey) not found in Info.plist")
             return
         }
-
-        AVCaptureDevice.requestAccess(for: .video) { _ in
+        EKEventStore().requestAccess(to: .reminder) { _, _ in
             callback(self.status)
         }
     }
-
 }
 
 #endif

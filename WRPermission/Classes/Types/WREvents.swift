@@ -9,7 +9,7 @@
 import EventKit
 
 /** 日历权限 */
-public class WRPermissionEvents: WRPermission {
+public class WREvents: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)

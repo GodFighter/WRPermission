@@ -1,27 +1,28 @@
 //
-//  WRPermissionSiri.swift
+//  WRPermissionContacts.swift
 //  Pods
 //
-//  Created by xianghui-iMac on 2020/8/29.
+//  Created by 项辉 on 2020/8/28.
 //
 
-#if PERMISSION_SIRI && canImport(Intents)
-import Intents
+#if PERMISSION_CONTACTS && canImport(Contacts)
+import Contacts
 
-public class WRPermissionSiri: WRPermission {
+/** 通讯录权限 */
+public class WRContacts: WRPermission {
 
     override init(type: WRPermissionType) {
         super.init(type: type)
     }
 
     public override var infoKey: String {
-        return "NSSiriUsageDescription"
+        return "NSContactsUsageDescription"
     }
 
     public override var status: WRPermissionStatus {
-        guard #available(iOS 10.0, *) else { fatalError() }
+        guard #available(iOS 9.0, *) else { fatalError() }
 
-        let status = INPreferences.siriAuthorizationStatus()
+        let status = CNContactStore.authorizationStatus(for: .contacts)
 
         switch status {
         case .authorized:          return .authorized
@@ -32,17 +33,14 @@ public class WRPermissionSiri: WRPermission {
     }
     
     public override func request(_ callback: @escaping Callback) {
-        guard #available(iOS 10.0, *) else { fatalError() }
-//        #if targetEnvironment(simulator)
-//        return
-//        #endif
+        guard #available(iOS 9.0, *) else { fatalError() }
 
         guard let _ = Bundle.main.object(forInfoDictionaryKey: infoKey) else {
-            print("WARNING: \(infoKey) not found in Info.plist")
+            debugPrint("WARNING: \(infoKey) not found in Info.plist")
             return
         }
 
-        INPreferences.requestSiriAuthorization { _ in
+        CNContactStore().requestAccess(for: .contacts) { _, _ in
             callback(self.status)
         }
     }
